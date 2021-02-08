@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from "next/document"
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link
             rel="preload"
@@ -12,6 +12,7 @@ class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
+          <title>Pokedex</title>
         </Head>
         <body>
           <Main />
