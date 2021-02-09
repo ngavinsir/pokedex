@@ -1,6 +1,7 @@
 import { useQuery, gql } from "@apollo/client"
 import InfiniteScroll from "react-infinite-scroll-component"
 import "twin.macro"
+import { CenterMessage } from "./lib"
 import { PokemonItem } from "./PokemonItem"
 
 const POKEMONS = gql`
@@ -35,13 +36,13 @@ export function PokemonList({}) {
   }
 
   if (error) {
-    return <div tw="pt-16 text-center">Can't fetch pokemons...</div>
+    return <CenterMessage>Can't fetch pokemons...</CenterMessage>
   }
 
   return (
-    <div>
+    <div tw="px-2 xs:px-6 py-4">
       <InfiniteScroll
-        tw="flex flex-col"
+        tw="flex flex-col space-y-8"
         dataLength={results.length}
         next={loadMorePokemons}
         hasMore={nextOffset !== 0 && !loading}

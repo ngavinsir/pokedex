@@ -2,6 +2,7 @@ import { GlobalStyles } from "twin.macro"
 import "@/styles/global.css"
 import "twin.macro"
 import Head from "next/head"
+import "url-search-params-polyfill"
 
 export default function App({ Component, pageProps }) {
   return (
