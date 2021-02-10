@@ -10,7 +10,7 @@ import { useState } from "react"
 import { useMemo } from "react"
 import { useForm } from "react-hook-form"
 
-const POKEMON = gql`
+export const POKEMON = gql`
   query pokemon($name: String!) {
     pokemon(name: $name) {
       sprites {
