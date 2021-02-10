@@ -1,11 +1,15 @@
-import { PokemonList } from "@/components/PokemonList"
-import { PokemonDetail } from "@/components/PokemonDetail"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
 import { PokemonBagProvider } from "@/context/PokemonBagContext"
-import { PokemonBag } from "@/components/PokemonBag"
 import { BottomNavbar } from "@/components/BottomNavbar"
 import "twin.macro"
+import dynamic from "next/dynamic"
+
+const PokemonBag = dynamic(() => import("@/components/PokemonBag").then(mod => mod.PokemonBag))
+const PokemonList = dynamic(() => import("@/components/PokemonList").then(mod => mod.PokemonList))
+const PokemonDetail = dynamic(() =>
+  import("@/components/PokemonDetail").then(mod => mod.PokemonDetail)
+)
 
 const apolloClient = new ApolloClient({
   ssrMode: false,
