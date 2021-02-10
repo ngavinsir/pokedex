@@ -21,7 +21,7 @@ export function PokemonItem({ image, name, capturedCount }) {
             tw`bg-red-50 border-red-300 border-2 rounded-md relative flex-shrink-0`
           ]}
         >
-          <Image src={image} layout="fill" />
+          <Image src={image} alt={name} layout="fill" />
         </div>
         <div tw="flex flex-col space-y-2">
           <span
@@ -41,7 +41,7 @@ export function PokemonItem({ image, name, capturedCount }) {
               <span tw="font-medium text-gray-500 text-base ml-1">captured</span>
             </div>
           ) : (
-            <span tw="italic text-sm text-gray-400">Hasn't been caught yet</span>
+            <span tw="italic text-sm text-gray-500">Hasn't been caught yet</span>
           )}
         </div>
       </div>

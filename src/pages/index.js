@@ -37,13 +37,13 @@ export default function Page() {
     <ApolloProvider client={apolloClient}>
       <PokemonBagProvider>
         <BrowserRouter>
-          <div id="content" tw="h-full overflow-y-auto">
+          <main id="content" tw="h-full overflow-y-auto">
             <Switch>
               <Route exact path="/bag" component={PokemonBag} />
               <Route exact path="/pokemon" component={PokemonDetail} />
               <Route path="/" component={PokemonList} />
             </Switch>
-          </div>
+          </main>
           <BottomNavbar />
         </BrowserRouter>
       </PokemonBagProvider>

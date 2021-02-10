@@ -110,7 +110,7 @@ export function PokemonDetail() {
   }
 
   return (
-    <div tw="flex flex-col px-2 xs:px-6 pt-4 pb-24 max-w-lg mx-auto">
+    <section tw="flex flex-col px-2 xs:px-6 pt-4 pb-24 max-w-lg mx-auto">
       <div tw="flex items-center space-x-3">
         <div
           css={[
@@ -121,7 +121,7 @@ export function PokemonDetail() {
             tw`bg-gray-100 relative rounded-lg`
           ]}
         >
-          <Image src={front_default} layout="fill" />
+          <Image src={front_default} alt={pokemonName} layout="fill" />
         </div>
         <h1 tw="font-semibold text-3xl text-blue-900">{pokemonName}</h1>
       </div>
@@ -252,6 +252,6 @@ export function PokemonDetail() {
           </div>
         </AriaModal>
       ) : null}
-    </div>
+    </section>
   )
 }

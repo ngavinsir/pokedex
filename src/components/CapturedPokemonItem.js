@@ -20,7 +20,7 @@ export function CapturedPokemonItem({ image, pokemonName, nickname }) {
           tw`bg-lightBlue-50 border-lightBlue-300 border-2 rounded-md relative flex-shrink-0`
         ]}
       >
-        <Image src={image} layout="fill" />
+        <Image src={image} alt={pokemonName} layout="fill" />
       </div>
       <div tw="flex flex-col space-y-1 w-full">
         <span
