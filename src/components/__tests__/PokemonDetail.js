@@ -4,7 +4,7 @@ import { Router } from "react-router-dom"
 import { createMemoryHistory } from "history"
 
 test("it render pokemon detail", async () => {
-  const history = createMemoryHistory({ initialEntries: ["pokemon?name=bulbasaur"] })
+  const history = createMemoryHistory({ initialEntries: ["/pokemon?name=bulbasaur"] })
   await render(
     <Router history={history}>
       <PokemonDetail />

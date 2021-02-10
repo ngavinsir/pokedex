@@ -22,3 +22,4 @@ This is a pokedex application that lists all pokemon through [graphql-pokeapi](h
 - [x] Capture a pokemon and give it a nickname (e2e with cypress)
 - [x] Release a captured pokemon (e2e with cypress)
 - [x] Display pokemon detail (unit test, with mocked graphql response)
+- [x] Display pokemon list (unit test, with mocked graphql response)

@@ -5,7 +5,7 @@ import "twin.macro"
 import { CenterMessage, Title } from "./lib"
 import { PokemonItem } from "./PokemonItem"
 
-const POKEMONS = gql`
+export const POKEMONS = gql`
   query pokemons($offset: Int) {
     pokemons(limit: 12, offset: $offset) {
       nextOffset
@@ -39,6 +39,7 @@ export function PokemonList() {
   const { capturedCount } = usePokemonBag()
 
   if (error) {
+    console.log(error)
     return <CenterMessage>Can't fetch pokemons...</CenterMessage>
   }
 

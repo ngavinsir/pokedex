@@ -11,7 +11,10 @@ export function PokemonItem({ image, name, capturedCount }) {
         search: "?name=" + name
       }}
     >
-      <div tw="flex items-center space-x-3 xs:space-x-6 w-full can-hover:hover:bg-gray-50 rounded-md">
+      <div
+        role="listitem"
+        tw="flex items-center space-x-3 xs:space-x-6 w-full can-hover:hover:bg-gray-50 rounded-md"
+      >
         <div
           css={[
             css`
