@@ -1,3 +1,4 @@
+import { usePokemonBag } from "@/context/PokemonBagContext"
 import { useQuery, gql } from "@apollo/client"
 import InfiniteScroll from "react-infinite-scroll-component"
 import "twin.macro"
@@ -17,7 +18,7 @@ const POKEMONS = gql`
   }
 `
 
-export function PokemonList({}) {
+export function PokemonList() {
   const {
     loading,
     error,
@@ -35,6 +36,8 @@ export function PokemonList({}) {
     })
   }
 
+  const { capturedCount } = usePokemonBag()
+
   if (error) {
     return <CenterMessage>Can't fetch pokemons...</CenterMessage>
   }
@@ -48,7 +51,7 @@ export function PokemonList({}) {
         hasMore={nextOffset !== 0 && !loading}
       >
         {results.map(pokemon => (
-          <PokemonItem key={pokemon.id} {...pokemon} />
+          <PokemonItem key={pokemon.id} {...pokemon} capturedCount={capturedCount(pokemon.name)} />
         ))}
         {loading && <span tw="self-center">Loading ...</span>}
       </InfiniteScroll>

@@ -1,8 +1,9 @@
 import tw, { css } from "twin.macro"
 import Image from "next/image"
 import { Link } from "react-router-dom"
+import { PokeballIcon } from "./lib"
 
-export function PokemonItem({ image, name }) {
+export function PokemonItem({ image, name, capturedCount }) {
   return (
     <Link
       to={{
@@ -22,7 +23,7 @@ export function PokemonItem({ image, name }) {
         >
           <Image src={image} layout="fill" />
         </div>
-        <div tw="flex flex-col">
+        <div tw="flex flex-col space-y-2">
           <span
             css={[
               css`
@@ -33,6 +34,15 @@ export function PokemonItem({ image, name }) {
           >
             {name}
           </span>
+          {capturedCount > 0 ? (
+            <div tw="flex items-center">
+              <PokeballIcon size="1.2rem" />
+              <span tw="font-semibold text-lg text-gray-800 ml-2">{capturedCount}</span>
+              <span tw="font-medium text-gray-500 text-base ml-1">captured</span>
+            </div>
+          ) : (
+            <span tw="italic text-sm text-gray-400">Hasn't been caught yet</span>
+          )}
         </div>
       </div>
     </Link>
