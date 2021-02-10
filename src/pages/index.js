@@ -3,6 +3,7 @@ import { PokemonDetail } from "@/components/PokemonDetail"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
 import { PokemonBagProvider } from "@/context/PokemonBagContext"
+import { PokemonBag } from "@/components/PokemonBag"
 
 const apolloClient = new ApolloClient({
   ssrMode: false,
@@ -37,6 +38,7 @@ export default function Page() {
           <Switch>
             <Route exact path="/" component={PokemonList} />
             <Route exact path="/pokemon" component={PokemonDetail} />
+            <Route exact path="/bag" component={PokemonBag} />
           </Switch>
         </BrowserRouter>
       </PokemonBagProvider>

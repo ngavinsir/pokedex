@@ -45,7 +45,7 @@ function PokemonBagProvider(props) {
     [state]
   )
   const capture = useCallback(newPokemon => dispatch({ type: CAPTURE, payload: newPokemon }), [])
-  const release = useCallback(pokemon => dispatch({ type: RELEASE, payload: pokemon }), [])
+  const release = useCallback(nickname => dispatch({ type: RELEASE, payload: { nickname } }), [])
 
   const value = useMemo(
     () => ({ pokemonBag: state, capture, release, nicknameAvailable, capturedCount }),
