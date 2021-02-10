@@ -11,7 +11,7 @@ export function PokemonBag() {
   }
 
   return (
-    <div tw="py-4 flex flex-col items-center">
+    <div tw="py-4 flex flex-col">
       <Title>My Pokemon Bag</Title>
       <div tw="px-2 xs:px-6 py-4 flex flex-col space-y-8 w-full">
         {pokemonBag.map(pokemon => (

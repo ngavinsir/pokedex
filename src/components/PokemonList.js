@@ -43,10 +43,10 @@ export function PokemonList() {
   }
 
   return (
-    <div tw="px-2 xs:px-6 py-4 flex flex-col items-center">
+    <div tw="px-2 xs:px-6 py-4 flex flex-col">
       <Title>Pokemons</Title>
       <InfiniteScroll
-        tw="flex flex-col space-y-8 w-full"
+        tw="flex flex-col space-y-8"
         dataLength={results.length}
         next={loadMorePokemons}
         scrollableTarget="content"

@@ -6,9 +6,9 @@ import "url-search-params-polyfill"
 
 export default function App({ Component, pageProps }) {
   return (
-    <div suppressHydrationWarning>
+    <div tw="h-full" suppressHydrationWarning>
       {typeof window === "undefined" ? null : (
-        <div tw="font-sans h-screen flex flex-col">
+        <div tw="font-sans h-full flex flex-col">
           <Head>
             <title>Pokedex</title>
           </Head>
