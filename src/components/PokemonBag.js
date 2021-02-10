@@ -7,7 +7,7 @@ export function PokemonBag() {
   const { pokemonBag } = usePokemonBag()
 
   if (!pokemonBag || !pokemonBag.length) {
-    return <CenterMessage>You don't have pokemons in your bag...</CenterMessage>
+    return <CenterMessage>You don't have any pokemons in your bag...</CenterMessage>
   }
 
   return (
