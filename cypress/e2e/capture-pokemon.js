@@ -14,7 +14,7 @@ describe("capture pokemon", () => {
           cy.findByText(/dismiss/i).click()
         } else {
           cy.findByRole("textbox").type("thomas-test-pokemon")
-          cy.findByRole("button").contains(/ok/i).click()
+          cy.findByRole("button", { name: /ok/i }).click()
 
           cy.findByText(/my bag/i).click()
           cy.findByText("thomas-test-pokemon").should("exist")

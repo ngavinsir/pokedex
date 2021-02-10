@@ -10,7 +10,7 @@ export function CapturedPokemonItem({ image, pokemonName, nickname }) {
   const applicationNode = useMemo(() => document.getElementById("__next"), [])
 
   return (
-    <div tw="flex items-center space-x-3 xs:space-x-6">
+    <div role="listitem" tw="flex items-center space-x-3 xs:space-x-6">
       <div
         css={[
           css`
@@ -35,6 +35,7 @@ export function CapturedPokemonItem({ image, pokemonName, nickname }) {
         </span>
         <span tw="font-medium text-lg text-gray-500">{pokemonName}</span>
         <button
+          aria-label="release pokemon"
           tw="bg-red-400 can-hover:hover:bg-red-500 p-2 rounded-full mt-auto self-end"
           onClick={() => setOpenModal(true)}
         >

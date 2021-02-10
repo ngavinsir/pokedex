@@ -13,7 +13,7 @@ export function PokemonBag() {
   return (
     <section tw="py-4 flex flex-col max-w-lg mx-auto">
       <Title>My Pokemon Bag</Title>
-      <div tw="px-2 xs:px-6 py-4 flex flex-col space-y-8 w-full">
+      <div role="list" tw="px-2 xs:px-6 py-4 flex flex-col space-y-8 w-full">
         {pokemonBag.map(pokemon => (
           <CapturedPokemonItem key={pokemon.nickname} {...pokemon} />
         ))}
