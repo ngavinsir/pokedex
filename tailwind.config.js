@@ -7,7 +7,8 @@ module.exports = {
     },
     screens: {
       xs: "350px",
-      ...defaultTheme.screens
+      ...defaultTheme.screens,
+      "can-hover": { raw: "(hover: hover)" }
     },
     extend: {
       colors: {

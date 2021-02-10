@@ -43,7 +43,7 @@ export function PokemonList() {
   }
 
   return (
-    <div tw="px-2 xs:px-6 py-4 flex flex-col">
+    <div tw="px-2 xs:px-6 py-4 flex flex-col max-w-lg mx-auto">
       <Title>Pokemons</Title>
       <InfiniteScroll
         tw="flex flex-col space-y-8"

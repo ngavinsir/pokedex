@@ -110,7 +110,7 @@ export function PokemonDetail() {
   }
 
   return (
-    <div tw="flex flex-col px-2 xs:px-6 pt-4 pb-24">
+    <div tw="flex flex-col px-2 xs:px-6 pt-4 pb-24 max-w-lg mx-auto">
       <div tw="flex items-center space-x-3">
         <div
           css={[
@@ -157,19 +157,21 @@ export function PokemonDetail() {
         ))}
       </ChipsWrapper>
 
-      <div
-        onClick={capturePokemon}
-        css={[
-          css`
-            bottom: 6rem;
-            right: 1.5rem;
-          `,
-          tw`fixed px-5 py-3 flex space-x-2 items-center rounded-full shadow-lg bg-red-500`
-        ]}
-      >
-        <PokeballIcon size="2rem" />
-
-        <span tw="font-bold text-lg text-white">CAPTURE</span>
+      <div>
+        <div
+          onClick={capturePokemon}
+          css={[
+            css`
+              bottom: 6rem;
+              right: calc(max((100vw - 32rem) / 2, 0px) + 1.5rem);
+            `,
+            tw`fixed px-5 py-3 flex space-x-2 items-center rounded-full shadow-lg`,
+            tw`bg-red-500 can-hover:hover:bg-red-400 cursor-pointer`
+          ]}
+        >
+          <PokeballIcon size="2rem" />
+          <span tw="font-bold text-lg text-white">CAPTURE</span>
+        </div>
       </div>
 
       {captureStatus === SUCCESS ? (
@@ -211,7 +213,8 @@ export function PokemonDetail() {
                     css`
                       height: fit-content;
                     `,
-                    tw`font-bold text-white text-sm p-2 bg-gray-900 rounded-lg`
+                    tw`font-bold text-white text-sm py-2 px-4 bg-gray-900 rounded-lg 
+                    can-hover:hover:bg-gray-800`
                   ]}
                 >
                   OK
@@ -241,7 +244,8 @@ export function PokemonDetail() {
             <PoofIcon size="8rem" />
             <button
               onClick={() => setCaptureStatus(IDLE)}
-              tw="font-bold text-white text-sm p-2 bg-gray-900 rounded-lg text-center w-full"
+              tw="font-bold text-white text-sm p-2 bg-gray-900 can-hover:hover:bg-gray-800 
+              rounded-lg text-center w-full"
             >
               Dismiss
             </button>

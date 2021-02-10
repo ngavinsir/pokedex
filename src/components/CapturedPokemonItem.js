@@ -35,7 +35,7 @@ export function CapturedPokemonItem({ image, pokemonName, nickname }) {
         </span>
         <span tw="font-medium text-lg text-gray-500">{pokemonName}</span>
         <button
-          tw="bg-red-400 p-2 rounded-full mt-auto self-end"
+          tw="bg-red-400 can-hover:hover:bg-red-500 p-2 rounded-full mt-auto self-end"
           onClick={() => setOpenModal(true)}
         >
           <svg
