@@ -3,7 +3,12 @@ import { useUrlQuery } from "@/hooks/useUrlQuery"
 import { Redirect } from "react-router-dom"
 import tw, { styled, css } from "twin.macro"
 import Image from "next/image"
-import { CenterMessage } from "./lib"
+import { CenterMessage, PokeballIcon, TrophyIcon, PoofIcon } from "./lib"
+import { usePokemonBag } from "@/context/PokemonBagContext"
+import AriaModal from "react-aria-modal"
+import { useState } from "react"
+import { useMemo } from "react"
+import { useForm } from "react-hook-form"
 
 const POKEMON = gql`
   query pokemon($name: String!) {
@@ -55,6 +60,10 @@ const MovesChips = tw.span`font-semibold text-base p-3 rounded-md border-2 borde
 const ChipsWrapper = tw.div`flex flex-row flex-wrap gap-3`
 const StatsHeading = tw.span`font-medium text-base text-gray-400 mt-8 mb-3`
 
+const SUCCESS = "SUCCESS"
+const FAIL = "FAIL"
+const IDLE = "IDLE"
+
 const statsAbbreviation = {
   hp: "HP",
   attack: "ATK",
@@ -72,9 +81,15 @@ export function PokemonDetail() {
     skip: pokemonName === undefined
   })
 
+  const applicationNode = useMemo(() => document.getElementById("__next"), [])
+  const { nicknameAvailable, capture } = usePokemonBag()
+  const [captureStatus, setCaptureStatus] = useState(IDLE)
+  const { register, handleSubmit, errors } = useForm()
+
   if (pokemonName === undefined) return <Redirect to="/" />
   if (loading) return <CenterMessage>Loading ...</CenterMessage>
   if (error || !data.pokemon?.sprites) return <CenterMessage>Can't fetch pokemon...</CenterMessage>
+
   const {
     pokemon: {
       sprites: { front_default },
@@ -84,8 +99,18 @@ export function PokemonDetail() {
     }
   } = data
 
+  function capturePokemon() {
+    const success = Math.random() > 0.5
+    setCaptureStatus(success ? SUCCESS : FAIL)
+  }
+
+  function onNicknameSubmit({ nickname }) {
+    capture({ nickname, pokemonName, image: front_default })
+    setCaptureStatus(IDLE)
+  }
+
   return (
-    <div tw="flex flex-col px-2 xs:px-6 py-4">
+    <div tw="flex flex-col px-2 xs:px-6 pt-4 pb-24">
       <div tw="flex items-center space-x-3">
         <div
           css={[
@@ -119,16 +144,110 @@ export function PokemonDetail() {
       <StatsHeading>Types</StatsHeading>
       <ChipsWrapper>
         {types.map(type => (
-          <TypesChips type={type.type.name}>{type.type.name}</TypesChips>
+          <TypesChips key={type.type.name} type={type.type.name}>
+            {type.type.name}
+          </TypesChips>
         ))}
       </ChipsWrapper>
 
       <StatsHeading>Moves</StatsHeading>
       <ChipsWrapper>
         {moves.map(move => (
-          <MovesChips>{move.move.name}</MovesChips>
+          <MovesChips key={move.move.name}>{move.move.name}</MovesChips>
         ))}
       </ChipsWrapper>
+
+      <div
+        onClick={capturePokemon}
+        css={[
+          css`
+            bottom: 1.5rem;
+            right: 1.5rem;
+          `,
+          tw`fixed px-5 py-3 flex space-x-2 items-center rounded-full shadow-lg bg-red-500`
+        ]}
+      >
+        <PokeballIcon size="2rem" />
+
+        <span tw="font-bold text-lg text-white">CAPTURE</span>
+      </div>
+
+      {captureStatus === SUCCESS ? (
+        <AriaModal
+          scrollDisabled
+          verticallyCenter
+          titleText={SUCCESS}
+          applicationNode={applicationNode}
+          dialogStyle={{
+            backgroundColor: "white",
+            borderRadius: "1rem",
+            padding: "1.5rem",
+            width: "18rem",
+            maxWidth: "75vw"
+          }}
+        >
+          <div tw="flex flex-col items-center space-y-6 font-medium text-base text-gray-800">
+            <p>You have successfully caught the pokemon!</p>
+            <TrophyIcon size="4.5rem" />
+            <div tw="w-full">
+              <p>Give it a nickname</p>
+              <form tw="flex space-x-2" onSubmit={handleSubmit(onNicknameSubmit)}>
+                <div tw="flex flex-col">
+                  <input
+                    name="nickname"
+                    autoComplete="off"
+                    ref={register({ required: true, validate: value => nicknameAvailable(value) })}
+                    type="text"
+                    tw="p-1 w-full bg-gray-300 border-2 border-gray-700 rounded-lg focus:(outline-none border-blue-500)"
+                  />
+                  <span tw="text-sm text-red-400 leading-none mt-1">
+                    {errors.nickname?.type === "required" && "nickname can't be blank"}
+                    {errors.nickname?.type === "validate" && "nickname has already been taken"}
+                  </span>
+                </div>
+                <button
+                  type="submit"
+                  css={[
+                    css`
+                      height: fit-content;
+                    `,
+                    tw`font-bold text-white text-sm p-2 bg-gray-900 rounded-lg`
+                  ]}
+                >
+                  OK
+                </button>
+              </form>
+            </div>
+          </div>
+        </AriaModal>
+      ) : null}
+
+      {captureStatus === FAIL ? (
+        <AriaModal
+          scrollDisabled
+          verticallyCenter
+          titleText={FAIL}
+          applicationNode={applicationNode}
+          dialogStyle={{
+            backgroundColor: "white",
+            borderRadius: "1rem",
+            padding: "1.5rem",
+            width: "18rem",
+            maxWidth: "75vw"
+          }}
+        >
+          <div tw="flex flex-col items-center space-y-6 font-medium text-base text-gray-800">
+            <p>Oops..., the pokemon has run away</p>
+            <PoofIcon size="8rem" />
+            <button
+              onClick={() => setCaptureStatus(IDLE)}
+              tw="font-bold text-white text-sm p-2 bg-gray-900 rounded-lg text-center w-full"
+            >
+              Dismiss
+            </button>
+          </div>
+        </AriaModal>
+      ) : null}
     </div>
   )
 }
