@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
 import { PokemonBagProvider } from "@/context/PokemonBagContext"
 import { PokemonBag } from "@/components/PokemonBag"
+import { BottomNavbar } from "@/components/BottomNavbar"
+import "twin.macro"
 
 const apolloClient = new ApolloClient({
   ssrMode: false,
@@ -35,11 +37,14 @@ export default function Page() {
     <ApolloProvider client={apolloClient}>
       <PokemonBagProvider>
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={PokemonList} />
-            <Route exact path="/pokemon" component={PokemonDetail} />
-            <Route exact path="/bag" component={PokemonBag} />
-          </Switch>
+          <div id="content" tw="h-screen overflow-y-auto">
+            <Switch>
+              <Route exact path="/bag" component={PokemonBag} />
+              <Route exact path="/pokemon" component={PokemonDetail} />
+              <Route path="/" component={PokemonList} />
+            </Switch>
+          </div>
+          <BottomNavbar />
         </BrowserRouter>
       </PokemonBagProvider>
     </ApolloProvider>

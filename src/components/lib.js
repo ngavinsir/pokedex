@@ -2,6 +2,8 @@ import tw, { css } from "twin.macro"
 
 export const CenterMessage = tw.div`pt-16 text-center`
 
+export const Title = tw.span`font-semibold text-xl text-blue-900 mb-8`
+
 export const PokeballIcon = ({ size }) => (
   <svg
     css={css`

@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document"
+import "twin.macro"
 
 class MyDocument extends Document {
   render() {
@@ -13,7 +14,7 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
         </Head>
-        <body>
+        <body tw="overflow-y-hidden">
           <Main />
           <NextScript />
         </body>

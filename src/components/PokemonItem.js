@@ -11,7 +11,7 @@ export function PokemonItem({ image, name, capturedCount }) {
         search: "?name=" + name
       }}
     >
-      <div tw="flex items-center space-x-3 xs:space-x-6">
+      <div tw="flex items-center space-x-3 xs:space-x-6 w-full">
         <div
           css={[
             css`

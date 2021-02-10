@@ -2,7 +2,7 @@ import { usePokemonBag } from "@/context/PokemonBagContext"
 import { useQuery, gql } from "@apollo/client"
 import InfiniteScroll from "react-infinite-scroll-component"
 import "twin.macro"
-import { CenterMessage } from "./lib"
+import { CenterMessage, Title } from "./lib"
 import { PokemonItem } from "./PokemonItem"
 
 const POKEMONS = gql`
@@ -43,11 +43,13 @@ export function PokemonList() {
   }
 
   return (
-    <div tw="px-2 xs:px-6 py-4">
+    <div tw="px-2 xs:px-6 py-4 flex flex-col items-center">
+      <Title>Pokemons</Title>
       <InfiniteScroll
-        tw="flex flex-col space-y-8"
+        tw="flex flex-col space-y-8 w-full"
         dataLength={results.length}
         next={loadMorePokemons}
+        scrollableTarget="content"
         hasMore={nextOffset !== 0 && !loading}
       >
         {results.map(pokemon => (

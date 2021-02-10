@@ -73,11 +73,11 @@ export function CapturedPokemonItem({ image, pokemonName, nickname }) {
               your bag?
             </p>
             <div tw="mt-12 flex justify-end space-x-4 font-medium text-base items-center w-full">
-              <button tw="text-gray-500" onClick={() => setOpenModal(false)}>
+              <button tw="text-gray-500 font-medium" onClick={() => setOpenModal(false)}>
                 Cancel
               </button>
               <button
-                tw="bg-red-400 text-white p-2 px-3 rounded-lg"
+                tw="bg-red-400 text-white p-2 px-3 rounded-lg font-medium"
                 onClick={() => {
                   setOpenModal(false)
                   release(nickname)

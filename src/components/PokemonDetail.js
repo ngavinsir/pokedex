@@ -161,7 +161,7 @@ export function PokemonDetail() {
         onClick={capturePokemon}
         css={[
           css`
-            bottom: 1.5rem;
+            bottom: 6rem;
             right: 1.5rem;
           `,
           tw`fixed px-5 py-3 flex space-x-2 items-center rounded-full shadow-lg bg-red-500`

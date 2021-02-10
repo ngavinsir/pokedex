@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
   return (
     <div suppressHydrationWarning>
       {typeof window === "undefined" ? null : (
-        <div tw="font-sans">
+        <div tw="font-sans h-screen flex flex-col">
           <Head>
             <title>Pokedex</title>
           </Head>
