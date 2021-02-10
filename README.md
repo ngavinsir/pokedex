@@ -2,6 +2,8 @@
 
 ![Screenshots](screenshot.png)
 
+### checkout the web [here](https://pokedex-flame-omega.vercel.app/)
+
 This is a pokedex application that lists all pokemon through [graphql-pokeapi](https://github.com/mazipan/graphql-pokeapi). This app can also run a pokemon capture simulation and you can give a nickname to it. You can keep your captured pokemons forever.
 
 ## Tech-stack:
