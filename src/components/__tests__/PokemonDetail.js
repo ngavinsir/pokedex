@@ -1,4 +1,4 @@
-import { render, screen } from "@/test/app-test-utils"
+import { render, screen, waitFor } from "@/test/app-test-utils"
 import { PokemonDetail } from "../PokemonDetail"
 import { Router } from "react-router-dom"
 import { createMemoryHistory } from "history"
@@ -11,7 +11,5 @@ test("it render pokemon detail", async () => {
     </Router>
   )
 
-  await new Promise(resolve => setTimeout(resolve, 0))
-
-  expect(screen.getByText(/bulbasaur/i)).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByText(/bulbasaur/i)).toBeInTheDocument())
 })
