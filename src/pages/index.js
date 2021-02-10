@@ -2,6 +2,7 @@ import { PokemonList } from "@/components/PokemonList"
 import { PokemonDetail } from "@/components/PokemonDetail"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+import { PokemonBagProvider } from "@/context/PokemonBagContext"
 
 const apolloClient = new ApolloClient({
   ssrMode: false,
@@ -31,12 +32,14 @@ const apolloClient = new ApolloClient({
 export default function Page() {
   return (
     <ApolloProvider client={apolloClient}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={PokemonList} />
-          <Route exact path="/pokemon" component={PokemonDetail} />
-        </Switch>
-      </BrowserRouter>
+      <PokemonBagProvider>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={PokemonList} />
+            <Route exact path="/pokemon" component={PokemonDetail} />
+          </Switch>
+        </BrowserRouter>
+      </PokemonBagProvider>
     </ApolloProvider>
   )
 }
