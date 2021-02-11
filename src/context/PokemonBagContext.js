@@ -33,7 +33,7 @@ const PokemonBagContext = React.createContext()
 function PokemonBagProvider(props) {
   const [state, dispatch] = useReducer(
     pokemonBagReducer,
-    JSON.parse(localStorage.getItem(pokemonBagKey)) ?? []
+    JSON.parse(localStorage.getItem(pokemonBagKey) ?? JSON.stringify([]))
   )
 
   const nicknameAvailable = useCallback(

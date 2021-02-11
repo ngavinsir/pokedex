@@ -157,22 +157,20 @@ export function PokemonDetail() {
         ))}
       </ChipsWrapper>
 
-      <div>
-        <div
-          onClick={capturePokemon}
-          css={[
-            css`
-              bottom: 6rem;
-              right: calc(max((100vw - 32rem) / 2, 0px) + 1.5rem);
-            `,
-            tw`fixed px-5 py-3 flex space-x-2 items-center rounded-full shadow-lg`,
-            tw`bg-red-500 can-hover:hover:bg-red-400 cursor-pointer`
-          ]}
-        >
-          <PokeballIcon size="2rem" />
-          <span tw="font-bold text-lg text-white">CAPTURE</span>
-        </div>
-      </div>
+      <button
+        onClick={capturePokemon}
+        css={[
+          css`
+            bottom: 6rem;
+            right: calc(max((100vw - 32rem) / 2, 0px) + 1.5rem);
+          `,
+          tw`fixed px-5 py-3 flex space-x-2 items-center rounded-full shadow-lg`,
+          tw`bg-red-500 can-hover:hover:bg-red-400 cursor-pointer`
+        ]}
+      >
+        <PokeballIcon size="2rem" />
+        <span tw="font-bold text-lg text-white">CAPTURE</span>
+      </button>
 
       {captureStatus === SUCCESS ? (
         <AriaModal
