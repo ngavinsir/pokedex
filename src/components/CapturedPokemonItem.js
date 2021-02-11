@@ -10,7 +10,7 @@ export function CapturedPokemonItem({ image, pokemonName, nickname }) {
   const applicationNode = useMemo(() => document.getElementById("__next"), [])
 
   return (
-    <div role="listitem" tw="flex items-center space-x-3 xs:space-x-6">
+    <li tw="flex items-center space-x-3 xs:space-x-6">
       <div
         css={[
           css`
@@ -90,6 +90,6 @@ export function CapturedPokemonItem({ image, pokemonName, nickname }) {
           </div>
         </AriaModal>
       ) : null}
-    </div>
+    </li>
   )
 }

@@ -47,16 +47,21 @@ export function PokemonList() {
     <section tw="px-2 xs:px-6 py-4 flex flex-col max-w-lg mx-auto">
       <Title>Pokemons</Title>
       <InfiniteScroll
-        tw="flex flex-col space-y-8"
         dataLength={results.length}
         next={loadMorePokemons}
         scrollableTarget="content"
         hasMore={nextOffset !== 0 && !loading}
       >
-        {results.map(pokemon => (
-          <PokemonItem key={pokemon.id} {...pokemon} capturedCount={capturedCount(pokemon.name)} />
-        ))}
-        {loading && <span tw="self-center">Loading ...</span>}
+        <div role="list" tw="flex flex-col space-y-8">
+          {results.map(pokemon => (
+            <PokemonItem
+              key={pokemon.id}
+              {...pokemon}
+              capturedCount={capturedCount(pokemon.name)}
+            />
+          ))}
+          {loading && <span tw="self-center">Loading ...</span>}
+        </div>
       </InfiniteScroll>
     </section>
   )

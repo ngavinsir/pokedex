@@ -27,7 +27,7 @@ export function PokemonItem({ image, name, capturedCount }) {
           <Image src={image} alt={name} layout="fill" />
         </div>
         <div tw="flex flex-col space-y-2">
-          <h3
+          <span
             css={[
               css`
                 color: #334155;
@@ -36,7 +36,7 @@ export function PokemonItem({ image, name, capturedCount }) {
             ]}
           >
             {name}
-          </h3>
+          </span>
           {capturedCount > 0 ? (
             <div tw="flex items-center">
               <PokeballIcon size="1.2rem" />
